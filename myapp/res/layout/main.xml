@@ -8,7 +8,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_test"
-            android:textColor="#ffffffff" android:textStyle="bold" android:textIsSelectable="false"
-            android:textSize="16dp"/>
+            android:textColor="#ffffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="false"
+            android:textSize="16sp"
+            android:gravity="center"/>
 </LinearLayout>
 
