@@ -3,11 +3,12 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-        >
+              android:background="#ff398dff">
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_test"
-            />
+            android:textColor="#ffffffff" android:textStyle="bold" android:textIsSelectable="false"
+            android:textSize="16dp"/>
 </LinearLayout>
 
