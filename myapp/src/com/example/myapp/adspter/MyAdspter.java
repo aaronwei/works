@@ -1,10 +1,13 @@
 package com.example.myapp.adspter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.example.myapp.R;
 
 import java.util.List;
@@ -48,17 +51,17 @@ public class MyAdspter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.list,null);
             zujian.image = (ImageView)view.findViewById(R.id.image);
             zujian.title=(TextView)view.findViewById(R.id.title);
-            zujian.view=(Button)view.findViewById(R.id.view);
             zujian.info=(TextView)view.findViewById(R.id.info);
             view.setTag(zujian);
         }else{
             zujian = (Zujian)view.getTag();
         }
         //绑定数据
-        zujian.image.setBackgroundResource((Integer)data.get(i).get("image"));
+        zujian.image.setImageDrawable((Drawable) data.get(i).get("image"));
         zujian.title.setText((String)data.get(i).get("title"));
         zujian.info.setText((String)data.get(i).get("info"));
         return view;
     }
+
 
 }

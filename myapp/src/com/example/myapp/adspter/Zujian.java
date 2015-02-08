@@ -1,6 +1,5 @@
 package com.example.myapp.adspter;
 
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +9,5 @@ import android.widget.TextView;
 public class Zujian {
     public ImageView image;
     public TextView title;
-    public Button view;
     public TextView info;
 }
