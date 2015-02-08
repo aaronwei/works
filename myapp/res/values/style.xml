@@ -5,7 +5,7 @@
     </style>
 
     <style name="custom_title">
-        <item name="android:windowTitleSize">35dp</item>
+        <item name="android:windowTitleSize">56dp</item>
         <item name="android:windowTitleBackgroundStyle">@style/custom_window_title_background</item>
     </style>
 </resources>
