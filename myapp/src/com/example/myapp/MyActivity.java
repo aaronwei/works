@@ -22,7 +22,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
     private static final int WHAT_DID_LOAD_DATA = 0;
     private static final int WHAT_DID_REFRESH = 1;
     private static final int WHAT_DID_MORE = 2;
-    private static final int PER_PAGE_SIZE = 9;
+    private static final int PER_PAGE_SIZE = 25;
     private int currentPage = 1;
     private PullDownView mPullDownView;
     private ListView appListView;
@@ -166,7 +166,17 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
             //非系统应用
             map.put("image", packageInfo.applicationInfo.loadIcon(getPackageManager()));
             map.put("title", packageInfo.applicationInfo.loadLabel(getPackageManager()).toString());
-            map.put("info", "版本：" + packageInfo.versionName);
+            if (packageInfo.versionName != null && !"".equals(packageInfo.versionName)) {
+                String[] versions = packageInfo.versionName.split("\\.");
+                if (versions.length >= 2) {
+                    map.put("info", versions[0] + "." + versions[1]);
+                } else {
+                    map.put("info", versions[0] + ".0");
+                }
+
+            } else {
+                map.put("info", "1.0");
+            }
             list.add(map);
             // }
         }
