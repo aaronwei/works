@@ -5,13 +5,12 @@
               android:layout_height="fill_parent"
               android:background="#fff0fff1">
 
-    <ListView android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:id="@+id/list_view"
-              android:divider="#fff0fff1"
-              android:dividerHeight="5dp"
-              android:layout_marginTop="5dp"
+    <com.example.myapp.aaronwei.PullDownView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/list_view"
+            android:divider="#fff0fff1"
+            android:dividerHeight="8dp"
             />
-
 </LinearLayout>
 

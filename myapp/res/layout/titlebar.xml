@@ -8,9 +8,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_title_share"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:layout_alignParentLeft="true"
             android:id="@+id/share"
             android:textColor="#ffffff" />
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_title_money"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
@@ -28,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_title_setting"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:textColor="#ffffff" android:layout_marginRight="10dp"/>
 </RelativeLayout>
