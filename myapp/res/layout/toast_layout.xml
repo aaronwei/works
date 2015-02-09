@@ -9,12 +9,13 @@
             android:id="@+id/toast_layout_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_toast_text"
             android:textColor="#ffffffff"
             android:textStyle="bold"
             android:textIsSelectable="false"
             android:textSize="16sp"
             android:gravity="center"
             android:layout_marginTop="7dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 </LinearLayout>

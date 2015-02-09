@@ -9,8 +9,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/list_view"
-            android:divider="#fff0fff1"
+            android:divider="#E8FFE8"
             android:dividerHeight="8dp"
+            android:layout_marginTop="8dp"
             />
 </LinearLayout>
 
