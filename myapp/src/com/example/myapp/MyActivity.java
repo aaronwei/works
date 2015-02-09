@@ -1,13 +1,12 @@
 package com.example.myapp;
 
 import android.app.Activity;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.*;
-import android.widget.AdapterView;
+import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import com.example.myapp.aaronwei.PullDownView;
 import com.example.myapp.adspter.MyAdspter;
 import com.example.myapp.toast.MyRedToast;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -34,8 +32,58 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
     private TextView textView;
     private TextView settingView;
+    mUIHandler=new
+
+    Handler() {
+
+        @Override
+        public void handleMessage (Message msg){
+            switch (msg.what) {
+                case WHAT_DID_LOAD_DATA: {
+                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
+                    if (!listData.isEmpty()) {
+                        MyActivity.this.list.addAll(listData);
+                        currentPage++;
+                        simAda.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(MyActivity.this, "无数据!", Toast.LENGTH_SHORT).show();
+                    }
+                    mPullDownView.notifyDidLoad();
+                    break;
+                }
+                case WHAT_DID_REFRESH: {
+                    currentPage = 1;
+                    MyActivity.this.list = (List<Map<String, Object>>) msg.obj;
+                    currentPage++;
+                    simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
+                    MyActivity.this.appListView.setAdapter(simAda);
+                    simAda.notifyDataSetChanged();
+                    mPullDownView.notifyDidRefresh();
+                    break;
+                }
+
+                case WHAT_DID_MORE: {
+                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
+                    if (listData.size() == 0) {
+                        new MyRedToast(MyActivity.this).showToast("无更多数据！");
+                    } else {
+                        MyActivity.this.list.addAll(listData);
+                        currentPage++;
+                    }
+                    simAda.notifyDataSetChanged();
+                    mPullDownView.notifyDidMore();
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+    ;
 
 
+    private
 
     /**
      * Called when the activity is first created.
@@ -52,11 +100,11 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
     /**
      * 初始化页面控件，以及控件事件添加
      */
-    public void intView(){
+    public void intView() {
 
-        this.textView = (TextView)this.findViewById(R.id.share);
+        this.textView = (TextView) this.findViewById(R.id.share);
         this.textView.setOnClickListener(this);
-        this.settingView = (TextView)this.findViewById(R.id.setting);
+        this.settingView = (TextView) this.findViewById(R.id.setting);
         this.settingView.setOnClickListener(this);
 
 
@@ -73,14 +121,13 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         //onRefresh();
     }
 
-
     /**
      * 页面 button onClick 事件
      * @param view
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.share:
                 this.showToast(this.textView.getText());
                 break;
@@ -99,6 +146,8 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         MyRedToast myRedToast = new MyRedToast(this);
         myRedToast.showToast(text);
     }
+
+    andler
 
     /**
      * 填充数据
@@ -140,6 +189,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                 } else {
                     map.put("info", "V1.0");
                 }
+
                 list.add(map);
             //}
         }
@@ -157,55 +207,9 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
     }
 
 
-    private Handler mUIHandler = new Handler() {
+    private Hvoid loa
 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case WHAT_DID_LOAD_DATA: {
-                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
-                    if (!listData.isEmpty()) {
-                        MyActivity.this.list.addAll(listData);
-                        currentPage++;
-                        simAda.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(MyActivity.this, "无数据!", Toast.LENGTH_SHORT).show();
-                    }
-                    mPullDownView.notifyDidLoad();
-                    break;
-                }
-                case WHAT_DID_REFRESH: {
-                    currentPage = 1;
-                    MyActivity.this.list = (List<Map<String, Object>>) msg.obj;
-                    currentPage++;
-                    simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
-                    MyActivity.this.appListView.setAdapter(simAda);
-                    simAda.notifyDataSetChanged();
-                    mPullDownView.notifyDidRefresh();
-                    break;
-                }
-
-                case WHAT_DID_MORE: {
-                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
-                    if (listData.size() == 0) {
-                        new MyRedToast(MyActivity.this).showToast("无更多数据！");
-                    } else {
-                        MyActivity.this.list.addAll(listData);
-                        currentPage++;
-                    }
-                    simAda.notifyDataSetChanged();
-                    mPullDownView.notifyDidMore();
-                    break;
-                }
-            }
-
-        }
-
-    };
-
-
-
-    private void loadData() {
+    dData() {
         new Thread(new Runnable() {
 
             @Override
