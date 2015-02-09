@@ -20,20 +20,20 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_alignParentLeft="true"
-                android:contentDescription="@string/app_gen"/>
+                android:contentDescription="@string/app_gen" android:layout_marginRight="5dp"/>
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_toRightOf="@id/image"
                       android:layout_height="fill_parent"
                       android:orientation="horizontal"
-                      android:gravity="left"
-                      >
+                      android:gravity="left|center"
+                      android:id="@+id/centerLayout"
+                      android:layout_marginLeft="5dp">
             <LinearLayout android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:orientation="vertical"
                             android:gravity="left">
                 <TextView
@@ -43,63 +43,49 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:gravity="center"
-                        android:textColor="#FFFFFFFF" android:text="@string/app_title_money"/>
+                        android:textColor="#FFFFFFFF" android:layout_marginBottom="3dp"/>
+
                 <TextView
-                        android:id="@+id/firstInstallTime"
+                        android:id="@+id/lastUpdateTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:textColor="#FFFFFFFF" android:text="333333333333333"/>
+                        android:textColor="#FFFFFFFF" android:layout_marginTop="3dp"/>
 
             </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="fill_parent"
+                      android:layout_alignParentEnd="false"
+                      android:orientation="vertical"
+                      android:layout_toRightOf="@id/centerLayout" android:gravity="center"
+                      android:layout_marginLeft="20dp">
 
             <LinearLayout android:layout_width="wrap_content"
                           android:layout_height="fill_parent"
                           android:orientation="vertical"
-                          >
-                <LinearLayout android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal"
-                        >
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:padding="2dp"
-                            android:background="#ffff7e77"
-                            android:text="300M"
-                            android:gravity="center"
-                            android:textColor="#FFFFFFFF"/>
-                    <TextView
-                            android:id="@+id/info"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:background="#ffff7e77"
-                            android:textColor="#FFFFFFFF"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="vertical"
-                        >
-                    <TextView
-                            android:id="@+id/lastUpdateTime"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:textColor="#FFFFFFFF" android:text="223345566676778"/>
-                </LinearLayout>
+                          android:gravity="center">
 
+                <TextView
+                        android:id="@+id/info"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:background="#ffff7e77"
+                        android:textColor="#FFFFFFFF" android:gravity="center" android:layout_marginBottom="3dp"/>
+                <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        android:background="#ffff7e77"
+                        android:textColor="#FFFFFFFF"
+                        android:text="200M"
+                        android:gravity="center" android:layout_marginTop="3dp"/>
             </LinearLayout>
 
-        </LinearLayout>
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_alignParentRight="true"
-                      android:layout_height="fill_parent">
-            <TextView android:layout_width="fill_parent"
-                      android:layout_height="fill_parent"
-                      android:text="aa"
-                    />
         </LinearLayout>
     </RelativeLayout>
 
