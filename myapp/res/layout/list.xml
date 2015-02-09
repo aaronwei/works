@@ -28,80 +28,70 @@
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_toRightOf="@id/image"
                       android:layout_height="fill_parent"
-                      android:layout_marginLeft="20dp"
-                      android:orientation="vertical"
+                      android:orientation="horizontal"
+                      android:gravity="left"
                       >
-            <RelativeLayout android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_marginTop="4dp"
-                          >
-
-
-                <RelativeLayout android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal"
-                              >
-                    <TextView
-                            android:id="@+id/title"
-                            android:layout_width="wrap_content"
+            <LinearLayout android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="#FFFFFFFF"/>
+                            android:layout_marginTop="4dp"
+                            android:orientation="vertical"
+                            android:gravity="left">
+                <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textColor="#FFFFFFFF" android:text="@string/app_title_money"/>
+                <TextView
+                        android:id="@+id/firstInstallTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="#FFFFFFFF" android:text="333333333333333"/>
 
-                    <LinearLayout android:layout_width="wrap_content"
-                                  android:layout_height="fill_parent"
-                                  android:orientation="horizontal"
-                                  android:layout_toRightOf="@id/title"
-                                  android:layout_alignParentEnd="true"
-                                  >
-                        <TextView
-                                android:layout_width="65dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="20dp"
-                                android:padding="2dp"
-                                android:background="#ffff7e77"
-                                android:text="300M"
-                                android:gravity="center"
-                                android:textColor="#FFFFFFFF"/>
-                        <TextView
-                                android:id="@+id/info"
-                                android:layout_width="65dp"
-                                android:layout_height="wrap_content"
-                                android:padding="2dp"
-                                android:layout_marginRight="20dp"
-                                android:background="#ffff7e77"
-                                android:textColor="#FFFFFFFF"/>
-                    </LinearLayout>
-                </RelativeLayout>
+            </LinearLayout>
 
-
-
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="fill_parent"
+                          android:orientation="vertical"
+                          >
                 <LinearLayout android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:orientation="horizontal"
-                              android:layout_alignParentBottom="true"
-                              android:layout_marginBottom="4dp"
                         >
                     <TextView
-                            android:id="@+id/firstInstallTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:textColor="#FFFFFFFF"/>
-
-                    <TextView
-                            android:id="@+id/lastUpdateTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="left"
+                            android:padding="2dp"
+                            android:background="#ffff7e77"
+                            android:text="300M"
+                            android:gravity="center"
+                            android:textColor="#FFFFFFFF"/>
+                    <TextView
+                            android:id="@+id/info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:background="#ffff7e77"
                             android:textColor="#FFFFFFFF"/>
                 </LinearLayout>
-            </RelativeLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                        >
+                    <TextView
+                            android:id="@+id/lastUpdateTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#FFFFFFFF" android:text="223345566676778"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_alignParentRight="true"
