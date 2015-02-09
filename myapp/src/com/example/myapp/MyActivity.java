@@ -1,21 +1,24 @@
 package com.example.myapp;
 
 import android.app.Activity;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.*;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.myapp.Listener.AppListViewOnItemClickListener;
 import com.example.myapp.aaronwei.PullDownView;
 import com.example.myapp.adspter.MyAdspter;
+import com.example.myapp.toast.MyRedToast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class MyActivity extends Activity implements View.OnClickListener, PullDownView.OnPullDownListener {
 
@@ -31,51 +34,8 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
     private TextView textView;
     private TextView settingView;
-    private Handler mUIHandler = new Handler() {
 
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case WHAT_DID_LOAD_DATA: {
-                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
-                    if (!listData.isEmpty()) {
-                        MyActivity.this.list.addAll(listData);
-                        currentPage++;
-                        simAda.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(MyActivity.this, "无数据!", Toast.LENGTH_SHORT).show();
-                    }
-                    mPullDownView.notifyDidLoad();
-                    break;
-                }
-                case WHAT_DID_REFRESH: {
-                    currentPage = 1;
-                    MyActivity.this.list = (List<Map<String, Object>>) msg.obj;
-                    currentPage++;
-                    simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
-                    MyActivity.this.appListView.setAdapter(simAda);
-                    simAda.notifyDataSetChanged();
-                    mPullDownView.notifyDidRefresh();
-                    break;
-                }
 
-                case WHAT_DID_MORE: {
-                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
-                    if (listData.size() == 0) {
-                        Toast.makeText(MyActivity.this, "无更多数据!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        MyActivity.this.list.addAll(listData);
-                        currentPage++;
-                    }
-                    simAda.notifyDataSetChanged();
-                    mPullDownView.notifyDidMore();
-                    break;
-                }
-            }
-
-        }
-
-    };
 
     /**
      * Called when the activity is first created.
@@ -107,9 +67,12 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         this.appListView.setAdapter(this.simAda);
         this.appListView.setDividerHeight(12);
         mPullDownView.enableAutoFetchMore(true, 1);
+        mPullDownView.setOnClickListener(this);
+        this.appListView.setOnItemClickListener(new AppListViewOnItemClickListener(MyActivity.this));
         loadData();
-        onRefresh();
+        //onRefresh();
     }
+
 
     /**
      * 页面 button onClick 事件
@@ -124,9 +87,6 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
             case R.id.setting:
                 this.showToast(this.settingView.getText());
                 break;
-            case R.id.list_view:
-                this.showToast(this.settingView.getText());
-                break;
             default:
                 break;
         }
@@ -136,14 +96,8 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
      * 弹出自定义toast
      */
     public void showToast(CharSequence text){
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout));
-        Toast toast = Toast.makeText(getApplicationContext(), R.string.app_toast_text, Toast.LENGTH_SHORT);
-        TextView toastText = (TextView)layout.findViewById(R.id.toast_layout_text);
-        toastText.setText("你点击的是："+text);
-        toast.setView(layout);
-        toast.setGravity(Gravity.CENTER,0,0);
-        toast.show();
+        MyRedToast myRedToast = new MyRedToast(this);
+        myRedToast.showToast(text);
     }
 
     /**
@@ -162,23 +116,32 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         for (int i = 0; i < packages.size(); i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             PackageInfo packageInfo = packages.get(i);
-            // if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-            //非系统应用
-            map.put("image", packageInfo.applicationInfo.loadIcon(getPackageManager()));
-            map.put("title", packageInfo.applicationInfo.loadLabel(getPackageManager()).toString());
-            if (packageInfo.versionName != null && !"".equals(packageInfo.versionName)) {
-                String[] versions = packageInfo.versionName.split("\\.");
-                if (versions.length >= 2) {
-                    map.put("info", versions[0] + "." + versions[1]);
-                } else {
-                    map.put("info", versions[0] + ".0");
+            //if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                //非系统应用
+                map.put("image", packageInfo.applicationInfo.loadIcon(getPackageManager()));
+                String appName = packageInfo.applicationInfo.loadLabel(getPackageManager()).toString();
+                if(appName.length()>8) {
+                    map.put("title", packageInfo.applicationInfo.loadLabel(getPackageManager()).toString().substring(0, 8)+"...");
+                }else{
+                    map.put("title",appName);
                 }
+                SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
 
-            } else {
-                map.put("info", "1.0");
-            }
-            list.add(map);
-            // }
+                map.put("firstInstallTime",format.format(new Date(packageInfo.firstInstallTime)));
+                map.put("lastUpdateTime",format.format(new Date(packageInfo.lastUpdateTime)));
+                if (packageInfo.versionName != null && !"".equals(packageInfo.versionName)) {
+                    String[] versions = packageInfo.versionName.split("\\.");
+                    if (versions.length >= 2) {
+                        map.put("info", "V"+versions[0] + "." + versions[1]);
+                    } else {
+                        map.put("info", "V"+versions[0] + ".0");
+                    }
+
+                } else {
+                    map.put("info", "V1.0");
+                }
+                list.add(map);
+            //}
         }
 
         if (list.size() >= PER_PAGE_SIZE * currentPage.intValue()) {
@@ -193,13 +156,62 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         return reaultList;
     }
 
+
+    private Handler mUIHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case WHAT_DID_LOAD_DATA: {
+                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
+                    if (!listData.isEmpty()) {
+                        MyActivity.this.list.addAll(listData);
+                        currentPage++;
+                        simAda.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(MyActivity.this, "无数据!", Toast.LENGTH_SHORT).show();
+                    }
+                    mPullDownView.notifyDidLoad();
+                    break;
+                }
+                case WHAT_DID_REFRESH: {
+                    currentPage = 1;
+                    MyActivity.this.list = (List<Map<String, Object>>) msg.obj;
+                    currentPage++;
+                    simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
+                    MyActivity.this.appListView.setAdapter(simAda);
+                    simAda.notifyDataSetChanged();
+                    mPullDownView.notifyDidRefresh();
+                    break;
+                }
+
+                case WHAT_DID_MORE: {
+                    List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
+                    if (listData.size() == 0) {
+                        new MyRedToast(MyActivity.this).showToast("无更多数据！");
+                    } else {
+                        MyActivity.this.list.addAll(listData);
+                        currentPage++;
+                    }
+                    simAda.notifyDataSetChanged();
+                    mPullDownView.notifyDidMore();
+                    break;
+                }
+            }
+
+        }
+
+    };
+
+
+
     private void loadData() {
         new Thread(new Runnable() {
 
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
