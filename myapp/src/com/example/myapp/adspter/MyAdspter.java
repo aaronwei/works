@@ -52,6 +52,8 @@ public class MyAdspter extends BaseAdapter {
             zujian.image = (ImageView)view.findViewById(R.id.image);
             zujian.title=(TextView)view.findViewById(R.id.title);
             zujian.info=(TextView)view.findViewById(R.id.info);
+            zujian.firstInstallTime = (TextView)view.findViewById(R.id.firstInstallTime);
+            zujian.lastUpdateTime = (TextView)view.findViewById(R.id.lastUpdateTime);
             view.setTag(zujian);
         }else{
             zujian = (Zujian)view.getTag();
@@ -60,6 +62,8 @@ public class MyAdspter extends BaseAdapter {
         zujian.image.setImageDrawable((Drawable) data.get(i).get("image"));
         zujian.title.setText((String)data.get(i).get("title"));
         zujian.info.setText((String)data.get(i).get("info"));
+        zujian.firstInstallTime.setText("初次安装时间："+(String)data.get(i).get("firstInstallTime"));
+        zujian.lastUpdateTime.setText("最后更新时间："+(String)data.get(i).get("lastUpdateTime"));
         return view;
     }
 
