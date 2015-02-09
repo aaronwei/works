@@ -32,12 +32,10 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
     private TextView textView;
     private TextView settingView;
-    mUIHandler=new
-
-    Handler() {
+    private Handler mUIHandler = new Handler() {
 
         @Override
-        public void handleMessage (Message msg){
+        public void handleMessage(Message msg) {
             switch (msg.what) {
                 case WHAT_DID_LOAD_DATA: {
                     List<Map<String, Object>> listData = (List<Map<String, Object>>) msg.obj;
@@ -78,12 +76,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
         }
 
-    }
-
-    ;
-
-
-    private
+    };
 
     /**
      * Called when the activity is first created.
@@ -147,8 +140,6 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         myRedToast.showToast(text);
     }
 
-    andler
-
     /**
      * 填充数据
      *
@@ -206,10 +197,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         return reaultList;
     }
 
-
-    private Hvoid loa
-
-    dData() {
+    private void loadData() {
         new Thread(new Runnable() {
 
             @Override
