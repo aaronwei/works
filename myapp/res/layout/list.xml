@@ -4,6 +4,7 @@
               android:layout_height="match_parent"
               android:background="#fff0fff1"
               android:orientation="vertical"
+              android:gravity="center"
               >
 
     <RelativeLayout
@@ -12,7 +13,7 @@
                   android:orientation="horizontal"
                   android:background="#66CCCC"
                   android:layout_marginLeft="5dp"
-                  android:layout_gravity="center"
+                  android:gravity="left"
                   android:layout_marginRight="5dp">
         <ImageView
                 android:id="@+id/image"
@@ -24,51 +25,92 @@
                 android:layout_alignParentLeft="true"
                 android:contentDescription="@string/app_gen"/>
 
-        <RelativeLayout android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_centerInParent="true"
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_toRightOf="@id/image"
+                      android:layout_height="fill_parent"
+                      android:layout_marginLeft="20dp"
+                      android:orientation="vertical"
                       >
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
+            <RelativeLayout android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginTop="4dp"
                           >
-                <TextView
-                        android:id="@+id/title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"/>
-                <TextView
-                        android:id="@+id/info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:textColor="#FFFFFFFF"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_alignParentBottom="true"
-                    >
-                <TextView
-                        android:id="@+id/firstInstallTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="#FFFFFFFF"/>
 
-                <TextView
-                        android:id="@+id/lastUpdateTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="left"
-                        android:textColor="#FFFFFFFF"/>
-            </LinearLayout>
-        </RelativeLayout>
 
+                <RelativeLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              >
+                    <TextView
+                            android:id="@+id/title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textColor="#FFFFFFFF"/>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                                  android:layout_height="fill_parent"
+                                  android:orientation="horizontal"
+                                  android:layout_toRightOf="@id/title"
+                                  android:layout_alignParentEnd="true"
+                                  >
+                        <TextView
+                                android:layout_width="65dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:padding="2dp"
+                                android:background="#ffff7e77"
+                                android:text="300M"
+                                android:gravity="center"
+                                android:textColor="#FFFFFFFF"/>
+                        <TextView
+                                android:id="@+id/info"
+                                android:layout_width="65dp"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="#ffff7e77"
+                                android:textColor="#FFFFFFFF"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_alignParentBottom="true"
+                              android:layout_marginBottom="4dp"
+                        >
+                    <TextView
+                            android:id="@+id/firstInstallTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#FFFFFFFF"/>
+
+                    <TextView
+                            android:id="@+id/lastUpdateTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="left"
+                            android:textColor="#FFFFFFFF"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:layout_height="fill_parent">
+            <TextView android:layout_width="fill_parent"
+                      android:layout_height="fill_parent"
+                      android:text="aa"
+                    />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
