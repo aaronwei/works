@@ -1,6 +1,7 @@
 package com.example.myapp.adspter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import com.example.myapp.R;
 
 import java.util.List;
 import java.util.Map;
-import java.util.zip.ZipEntry;
 
 /**
  * Created by aaron on 2015/2/7.
@@ -21,10 +21,9 @@ public class MyAdspter extends BaseAdapter {
 
     private List<Map<String,Object>> data;
     private LayoutInflater layoutInflater;
-    private Context context;
 
     public MyAdspter(Context context,List<Map<String,Object>> data){
-        this.context = context;
+
         this.data = data;
         this.layoutInflater = LayoutInflater.from(context);
     }
@@ -65,8 +64,18 @@ public class MyAdspter extends BaseAdapter {
         zujian.info.setText((String)data.get(i).get("info"));
         zujian.lastUpdateTime.setText("最后更新时间："+(String)data.get(i).get("lastUpdateTime"));
         zujian.isRun.setText((String)data.get(i).get("isRun"));
+        if (i != 0) {
+            view.setBackgroundColor(Color.parseColor("#66CCCC"));
+        }
         return view;
     }
 
+    public static class Zujian {
+        ImageView image;
+        TextView title;
+        TextView info;
+        TextView lastUpdateTime;
+        TextView isRun;
+    }
 
 }
