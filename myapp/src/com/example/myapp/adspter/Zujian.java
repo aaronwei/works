@@ -11,4 +11,5 @@ public class Zujian {
     public TextView title;
     public TextView info;
     public TextView lastUpdateTime;
+    public TextView isRun;
 }

@@ -12,6 +12,7 @@ import com.example.myapp.R;
 
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
 
 /**
  * Created by aaron on 2015/2/7.
@@ -53,6 +54,7 @@ public class MyAdspter extends BaseAdapter {
             zujian.title=(TextView)view.findViewById(R.id.title);
             zujian.info=(TextView)view.findViewById(R.id.info);
             zujian.lastUpdateTime = (TextView)view.findViewById(R.id.lastUpdateTime);
+            zujian.isRun = (TextView)view.findViewById(R.id.isRun);
             view.setTag(zujian);
         }else{
             zujian = (Zujian)view.getTag();
@@ -62,6 +64,7 @@ public class MyAdspter extends BaseAdapter {
         zujian.title.setText((String)data.get(i).get("title"));
         zujian.info.setText((String)data.get(i).get("info"));
         zujian.lastUpdateTime.setText("最后更新时间："+(String)data.get(i).get("lastUpdateTime"));
+        zujian.isRun.setText((String)data.get(i).get("isRun"));
         return view;
     }
 
