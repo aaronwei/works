@@ -1,6 +1,8 @@
 package com.example.myapp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -123,7 +125,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.share:
-                this.showToast(this.textView.getText());
+                this.gotoTowActivity();
                 break;
             case R.id.setting:
                 this.showToast(this.settingView.getText());
@@ -132,6 +134,13 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                 break;
         }
     }
+
+    public void gotoTowActivity(){
+        Intent intent = new Intent(MyActivity.this, TowActivity.class);
+        startActivityForResult(intent,0);
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
+
 
     /**
      * 弹出自定义toast
@@ -157,7 +166,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         for (int i = 0; i < packages.size(); i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             PackageInfo packageInfo = packages.get(i);
-            //if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 //非系统应用
                 map.put("image", packageInfo.applicationInfo.loadIcon(getPackageManager()));
                 String appName = packageInfo.applicationInfo.loadLabel(getPackageManager()).toString();
@@ -183,7 +192,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                 }
 
                 list.add(map);
-            //}
+            }
         }
 
         if (list.size() >= PER_PAGE_SIZE * currentPage.intValue()) {
