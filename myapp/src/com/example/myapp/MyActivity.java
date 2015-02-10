@@ -1,9 +1,11 @@
 package com.example.myapp;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -192,6 +194,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                     map.put("info", "V1.0");
                 }
 
+                map.put("isRun",this.isRunApp(packageInfo));
                 list.add(map);
             }
         }
@@ -259,5 +262,24 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                 msg.sendToTarget();
             }
         }).start();
+    }
+
+    public String isRunApp(PackageInfo packageInfo){
+        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        //获取正在运行的应用
+        List<ActivityManager.RunningAppProcessInfo> run = am.getRunningAppProcesses();
+        //获取包管理器，在这里主要通过包名获取程序的图标和程序名
+        PackageManager pm =this.getPackageManager();
+        List<String> list = new ArrayList<String>();
+        int count = 0;
+        for(ActivityManager.RunningAppProcessInfo ra : run){
+//            packageInfo.applicationInfo.
+//            packageInfo.getInfo(ra.processName).loadLabel(pm).toString();
+        }
+        if(count>0) {
+            return "运行中...";
+        }else{
+            return "未运行";
+        }
     }
 }
