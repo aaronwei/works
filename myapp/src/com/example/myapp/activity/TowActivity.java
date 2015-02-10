@@ -1,13 +1,11 @@
-package com.example.myapp;
+package com.example.myapp.activity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import com.example.myapp.Listener.GoBackOnClickListener;
+import com.example.myapp.R;
 
 /**
  * Created by aaron on 2015/2/10.

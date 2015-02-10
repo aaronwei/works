@@ -6,7 +6,6 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import com.example.myapp.R;
 import com.example.myapp.toast.MyRedToast;
-import org.w3c.dom.Text;
 
 /**
  * Created by aaron on 2015/2/9.

@@ -1,12 +1,11 @@
 package com.example.myapp.Listener;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import com.example.myapp.MyActivity;
 import com.example.myapp.R;
-import com.example.myapp.TowActivity;
+
 
 /**
  * Created by aaron on 2015/2/10.
