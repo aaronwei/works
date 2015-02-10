@@ -42,6 +42,8 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                     if (!listData.isEmpty()) {
                         MyActivity.this.list.addAll(listData);
                         currentPage++;
+                        simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
+                        MyActivity.this.appListView.setAdapter(simAda);
                         simAda.notifyDataSetChanged();
                     } else {
                         Toast.makeText(MyActivity.this, "无数据!", Toast.LENGTH_SHORT).show();
@@ -111,7 +113,6 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         mPullDownView.setOnClickListener(this);
         this.appListView.setOnItemClickListener(new AppListViewOnItemClickListener(MyActivity.this));
         loadData();
-        //onRefresh();
     }
 
     /**
