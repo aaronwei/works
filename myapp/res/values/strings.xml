@@ -3,9 +3,9 @@
     <string name="app_name">那个女孩</string>
     <string name="app_test">卡特特工,疑犯追踪,绿箭侠,神盾局特工</string>
     <string name="app_toast_text">神盾局特工-菲斯-化学-物理</string>
-    <string name="app_title_share">分享</string>
+    <string name="app_title_share">测试</string>
     <string name="app_title_money">应用</string>
-    <string name="app_title_setting">设置</string>
+    <string name="app_title_setting"></string>
     <string name="app_gen">设置</string>
 
 </resources>
