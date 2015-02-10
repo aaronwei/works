@@ -12,6 +12,7 @@
             android:divider="#E8FFE8"
             android:dividerHeight="8dp"
             android:layout_marginTop="8dp"
+            android:cacheColorHint="#00000000"
             />
 </LinearLayout>
 
