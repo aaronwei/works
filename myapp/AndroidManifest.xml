@@ -12,7 +12,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TowActivity"></activity>
+        <activity android:name=".activity.TowActivity"></activity>
     </application>
     <uses-sdk android:minSdkVersion="9"/>
 </manifest>
