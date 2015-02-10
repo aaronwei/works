@@ -3,9 +3,9 @@ package com.example.myapp;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,7 +28,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
     private static final int WHAT_DID_LOAD_DATA = 0;
     private static final int WHAT_DID_REFRESH = 1;
     private static final int WHAT_DID_MORE = 2;
-    private static final int PER_PAGE_SIZE = 25;
+    private static final int PER_PAGE_SIZE = 100;
     private int currentPage = 1;
     private PullDownView mPullDownView;
     private ListView appListView;
@@ -47,7 +47,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                     if (!listData.isEmpty()) {
                         MyActivity.this.list.addAll(listData);
                         currentPage++;
-                        simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
+                        simAda = new MyAdspter(getApplicationContext(), MyActivity.this.list);
                         MyActivity.this.appListView.setAdapter(simAda);
                         simAda.notifyDataSetChanged();
                     } else {
@@ -60,7 +60,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
                     currentPage = 1;
                     MyActivity.this.list = (List<Map<String, Object>>) msg.obj;
                     currentPage++;
-                    simAda = new MyAdspter(MyActivity.this, MyActivity.this.list);
+                    simAda = new MyAdspter(getApplicationContext(), MyActivity.this.list);
                     MyActivity.this.appListView.setAdapter(simAda);
                     simAda.notifyDataSetChanged();
                     mPullDownView.notifyDidRefresh();
@@ -111,9 +111,10 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         mPullDownView = (PullDownView) findViewById(R.id.list_view);
         mPullDownView.setOnPullDownListener(this);
         appListView = mPullDownView.getListView();
-        this.simAda = new MyAdspter(this, getData(1));
+        this.simAda = new MyAdspter(getApplicationContext(), getData(1));
         this.appListView.setAdapter(this.simAda);
         this.appListView.setDividerHeight(12);
+        this.appListView.setCacheColorHint(Color.TRANSPARENT);
         mPullDownView.enableAutoFetchMore(true, 1);
         mPullDownView.setOnClickListener(this);
         this.appListView.setOnItemClickListener(new AppListViewOnItemClickListener(MyActivity.this));
@@ -164,12 +165,21 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
         List<PackageInfo> packages = getPackageManager().getInstalledPackages(0);
         int indexCount = 0;
+        int page = 0;
+        if (packages.size() % PER_PAGE_SIZE == 0) {
+            page = packages.size() / PER_PAGE_SIZE;
+        } else {
+            page = (packages.size() / PER_PAGE_SIZE) + 1;
+        }
 
+        if (currentPage > page) {
+            return new ArrayList<Map<String, Object>>();
+        }
 
         for (int i = 0; i < packages.size(); i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             PackageInfo packageInfo = packages.get(i);
-            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            //if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 //非系统应用
                 map.put("image", packageInfo.applicationInfo.loadIcon(getPackageManager()));
                 String appName = packageInfo.applicationInfo.loadLabel(getPackageManager()).toString();
@@ -196,7 +206,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
 
                 map.put("isRun",this.isRunApp(packageInfo));
                 list.add(map);
-            }
+            //}
         }
 
         if (list.size() >= PER_PAGE_SIZE * currentPage.intValue()) {
@@ -217,7 +227,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -235,7 +245,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -253,7 +263,7 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -273,8 +283,10 @@ public class MyActivity extends Activity implements View.OnClickListener, PullDo
         List<String> list = new ArrayList<String>();
         int count = 0;
         for(ActivityManager.RunningAppProcessInfo ra : run){
-//            packageInfo.applicationInfo.
-//            packageInfo.getInfo(ra.processName).loadLabel(pm).toString();
+            if (ra.uid == packageInfo.applicationInfo.uid) {
+                count++;
+                break;
+            }
         }
         if(count>0) {
             return "运行中...";
