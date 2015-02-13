@@ -8,38 +8,63 @@
 package com.example.myapp;
 
 public final class R {
+    public static final class anim {
+        public static final int push_left_in=0x7f040000;
+        public static final int push_left_out=0x7f040001;
+        public static final int push_right_in=0x7f040002;
+        public static final int push_rigth_out=0x7f040003;
+    }
     public static final class attr {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int toast_bg=0x7f020001;
+        public static final int pulldown_footer_arrow=0x7f020001;
+        public static final int pulldown_header_arrow=0x7f020002;
+        public static final int toast_bg=0x7f020003;
     }
     public static final class id {
-        public static final int image=0x7f060000;
-        public static final int info=0x7f060002;
-        public static final int list_view=0x7f060003;
-        public static final int setting=0x7f060005;
-        public static final int share=0x7f060004;
-        public static final int title=0x7f060001;
-        public static final int toast_layout=0x7f060006;
-        public static final int toast_layout_text=0x7f060007;
+        public static final int centerLayout=0x7f070001;
+        public static final int goBack=0x7f070013;
+        public static final int image=0x7f070000;
+        public static final int imageViewLayoutTow=0x7f070012;
+        public static final int info=0x7f070004;
+        public static final int isRun=0x7f070005;
+        public static final int lastUpdateTime=0x7f070003;
+        public static final int list_view=0x7f070006;
+        public static final int pulldown_footer_loading=0x7f070008;
+        public static final int pulldown_footer_text=0x7f070007;
+        public static final int pulldown_header_arrow=0x7f070009;
+        public static final int pulldown_header_arrow6666=0x7f07000d;
+        public static final int pulldown_header_date=0x7f07000c;
+        public static final int pulldown_header_loading=0x7f07000a;
+        public static final int pulldown_header_text=0x7f07000b;
+        public static final int setting=0x7f07000f;
+        public static final int share=0x7f07000e;
+        public static final int title=0x7f070002;
+        public static final int toast_layout=0x7f070010;
+        public static final int toast_layout_text=0x7f070011;
     }
     public static final class layout {
         public static final int list=0x7f030000;
         public static final int main=0x7f030001;
-        public static final int titlebar=0x7f030002;
-        public static final int toast_layout=0x7f030003;
+        public static final int pulldown_footer=0x7f030002;
+        public static final int pulldown_header=0x7f030003;
+        public static final int titlebar=0x7f030004;
+        public static final int toast_layout=0x7f030005;
+        public static final int tow=0x7f030006;
     }
     public static final class string {
-        public static final int app_name=0x7f040000;
-        public static final int app_test=0x7f040001;
-        public static final int app_title_money=0x7f040004;
-        public static final int app_title_setting=0x7f040005;
-        public static final int app_title_share=0x7f040003;
-        public static final int app_toast_text=0x7f040002;
+        public static final int app_gen=0x7f050006;
+        public static final int app_name=0x7f050000;
+        public static final int app_test=0x7f050001;
+        public static final int app_test_text=0x7f050007;
+        public static final int app_title_money=0x7f050004;
+        public static final int app_title_setting=0x7f050005;
+        public static final int app_title_share=0x7f050003;
+        public static final int app_toast_text=0x7f050002;
     }
     public static final class style {
-        public static final int custom_title=0x7f050001;
-        public static final int custom_window_title_background=0x7f050000;
+        public static final int custom_title=0x7f060001;
+        public static final int custom_window_title_background=0x7f060000;
     }
 }

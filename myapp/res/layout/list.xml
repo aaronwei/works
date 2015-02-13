@@ -11,9 +11,7 @@
                   android:layout_height="60dp"
                   android:orientation="horizontal"
                   android:background="#66CCCC"
-                  android:layout_marginLeft="5dp"
                   android:gravity="center_horizontal"
-                  android:layout_marginRight="5dp"
                   android:baselineAligned="true">
         <LinearLayout
                 android:layout_width="wrap_content"
@@ -63,15 +61,16 @@
                         android:padding="2dp"
                         android:background="#ffff7e77"
                         android:textColor="#FFFFFFFF" android:gravity="center" android:layout_marginBottom="3dp"/>
+
                 <TextView
-                        android:id="@+id/isRun"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:padding="2dp"
-                        android:background="#ffff7e77"
-                        android:textColor="#FFFFFFFF"
-                        android:text="200M"
-                        android:gravity="center" android:layout_marginTop="3dp"/>
+                    android:id="@+id/isRun"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:background="#ffff7e77"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="#FFFFFFFF" />
 
         </LinearLayout>
     </LinearLayout>
