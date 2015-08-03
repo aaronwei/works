@@ -16,6 +16,7 @@
             android:textStyle="bold"
             android:textColor="#ffffff" />
     <TextView
+            android:id="@+id/appliaction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_title_money"
