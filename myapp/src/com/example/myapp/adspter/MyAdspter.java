@@ -65,7 +65,7 @@ public class MyAdspter extends BaseAdapter {
         zujian.lastUpdateTime.setText("最后更新时间："+(String)data.get(i).get("lastUpdateTime"));
         zujian.isRun.setText((String)data.get(i).get("isRun"));
         if (i != 0) {
-            view.setBackgroundColor(Color.parseColor("#66CCCC"));
+            view.setBackgroundResource(R.drawable.text_view_border);
         }
         return view;
     }
